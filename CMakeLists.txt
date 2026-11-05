@@ -32,6 +32,7 @@ set(headers
 	include/AnimMotionHandler.h
 	include/Hooks.h
 	include/Motion.h
+	include/AnimationMotionRevolutionAPI.h
 	include/pch.h
 	include/Settings.h
 	include/utils/Logger.h
@@ -41,6 +42,7 @@ set(headers
 set(sources
 	source/Hooks.cpp
 	source/main.cpp
+	source/AnimationMotionRevolutionAPI.cpp
 	source/pch.cpp
 	source/Settings.cpp
 )

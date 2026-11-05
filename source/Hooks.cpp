@@ -116,7 +116,17 @@ namespace hooks
 				return false;
 			}
 
-			RE::BSSpinLock lock;
+			bool HasAnimMotionData(const RE::hkbCharacter* a_hkbCharacter) const noexcept
+			{
+				if (!a_hkbCharacter) {
+					return false;
+				}
+				RE::BSSpinLockGuard lockGuard{ this->lock };
+				const auto characterIt = data.find(a_hkbCharacter);
+				return characterIt != data.end();
+			}
+
+			mutable RE::BSSpinLock lock;
 
 		private:
 			std::map<const RE::hkbCharacter*, std::map<std::string, AnimMotionData>> data;
@@ -1100,6 +1110,11 @@ namespace hooks
 			a_rotation = RE::NiQuaternion{ 1.0F, 0.0F, 0.0F, 0.0F };
 		}
 
+	}
+
+	bool HasAnimMotionData(const RE::hkbCharacter* a_hkbCharacter) noexcept
+	{
+		return CharacterClipAnimMotionMap::GetSingleton()->HasAnimMotionData(a_hkbCharacter);
 	}
 
 	void Install()
