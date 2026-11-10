@@ -5,6 +5,7 @@
 #endif
 
 #include "utils/Logger.h"
+#include "utils/Trampoline.h"
 
 namespace
 {
@@ -84,7 +85,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 
 	logger::info("Loading {} {}...", plugin->GetName(), plugin->GetVersion());
 
-	SKSE::Init(a_skse);
+	SKSE::Init(a_skse, { .trampoline = true, .trampolineSize = utils::kTrampolineSize });
 	if (!SKSE::GetMessagingInterface()->RegisterListener("SKSE", OnSKSEMessage)) {
 		logger::critical("Failed to register SKSE messaging listener");
 		return false;
