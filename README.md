@@ -1,17 +1,35 @@
 # Animation Motion Revolution
 
-This fork ports alexsylex's Animation Motion Revolution to CommonLibSSE-NG 6.8.0
-and adds actor root-motion safety and combat-target warping.
+This fork of alexsylex's Animation Motion Revolution builds one SKSE plugin DLL
+for Skyrim SE, AE and VR on CommonLibVR (`ng` branch) and adds actor root-motion
+safety and combat-target warping.
 
 ## Runtime support
 
 - Skyrim SE 1.5.97
-- Skyrim AE 1.6.x and current Address Library-supported AE runtimes
-- VR is intentionally disabled because AMR's native hook sites have not been
-  validated against the VR executable.
+- Skyrim AE 1.6.x and 1.7.x (Address Library)
+- Skyrim VR 1.4.15 (VR Address Library)
 
-The CommonLibSSE-NG submodule is pinned to tag v6.8.0, commit
-44dd911486bc43b05b55a23781c7e471eef86542.
+All hook sites were compared instruction-for-instruction between SE 1.5.97,
+AE 1.6.1170, AE 1.7.104 and VR 1.4.15. VR has not been validated in-game yet.
+
+## Building
+
+Requires Visual Studio 2026, CMake 3.21+ and vcpkg (`VCPKG_ROOT` set).
+
+```text
+git submodule update --init --recursive
+cmake --preset vs2026-windows-vcpkg
+cmake --build build --config Release
+```
+
+`-DAMR_ENABLE_TRUEHUD_DEBUG=ON` adds the TrueHUD debug visualizations (off by default).
+
+## License
+
+GPL-3.0-or-later with the Modding Exception in [EXCEPTIONS.md](EXCEPTIONS.md).
+The original code by Alejandro (2022) remains available under the MIT license (see
+[LICENSE](LICENSE)); CommonLibVR is linked under GPL-3.0-or-later.
 
 The core root-motion features do not require behavior generation. The packaged
 behavior-graph variable integration requires Behavior Data Injector. On Skyrim

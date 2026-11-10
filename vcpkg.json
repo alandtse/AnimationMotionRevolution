@@ -3,8 +3,8 @@
   "name": "animation-motion-revolution",
   "version-string": "2.0.0",
   "description": "Animation-driven root motion with ground limiting and combat-target motion warping.",
-  "homepage": "https://github.com/alexsylex/AnimationMotionRevolution",
-  "license": "MIT",
+  "homepage": "https://github.com/alandtse/AnimationMotionRevolution",
+  "license": "GPL-3.0-or-later",
   "builtin-baseline": "ee12231b20c95013c6638d845d04c91559a1d1ff",
   "dependencies": [
     "directxmath",
