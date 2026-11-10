@@ -1,34 +1,26 @@
 {
   "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
   "configurePresets": [
     {
-      "name": "release-se-ae",
-      "displayName": "Release - Skyrim SE and AE",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/../AnimationMotionRevolution-build",
+      "name": "vs2026-windows-vcpkg",
+      "displayName": "Visual Studio 2026 - SE, AE and VR in one DLL",
+      "generator": "Visual Studio 18 2026",
+      "toolset": "v145",
+      "binaryDir": "${sourceDir}/build",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
         "VCPKG_HOST_TRIPLET": "x64-windows-static-md",
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",
-        "ENABLE_SKYRIM_SE": "ON",
-        "ENABLE_SKYRIM_AE": "ON",
-        "ENABLE_SKYRIM_VR": "OFF",
-        "SKSE_SUPPORT_XBYAK": "ON",
-        "SKSE_SUPPORT_PATCH_SAFETY": "ON",
-        "BUILD_TESTS": "OFF",
-        "COMMONLIB_PREBUILT": "OFF",
-        "COMMONLIB_ENABLE_IPO": "OFF",
-        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "OFF"
-      }
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+        "COMMONLIB_PREBUILT": "OFF"
+      },
+      "errors": { "deprecated": true },
+      "warnings": { "deprecated": true, "dev": true }
     }
   ],
   "buildPresets": [
-    {
-      "name": "release-se-ae",
-      "configurePreset": "release-se-ae",
-      "jobs": 0
-    }
+    { "name": "release", "configurePreset": "vs2026-windows-vcpkg", "configuration": "Release" },
+    { "name": "debug", "configurePreset": "vs2026-windows-vcpkg", "configuration": "Debug" }
   ]
 }

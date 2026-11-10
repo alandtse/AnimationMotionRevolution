@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.21)
 
-# CommonLibSSE-NG and the selected vcpkg triplet use the dynamic MSVC runtime.
+# CommonLibVR (ng) and the selected vcpkg triplet use the dynamic MSVC runtime.
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" CACHE STRING "")
 
 set(SKSE_SUPPORT_XBYAK ON CACHE BOOL "Enable Xbyak trampoline support" FORCE)
 set(SKSE_SUPPORT_PATCH_SAFETY ON CACHE BOOL "Validate trampoline patch boundaries" FORCE)
 set(ENABLE_SKYRIM_SE ON CACHE BOOL "Build for Skyrim SE" FORCE)
 set(ENABLE_SKYRIM_AE ON CACHE BOOL "Build for Skyrim AE" FORCE)
-set(ENABLE_SKYRIM_VR OFF CACHE BOOL "Build for Skyrim VR" FORCE)
+set(ENABLE_SKYRIM_VR ON CACHE BOOL "Build for Skyrim VR" FORCE)
 set(BUILD_TESTS OFF CACHE BOOL "Build CommonLibSSE tests" FORCE)
 option(AMR_ENABLE_TRUEHUD_DEBUG "Build TrueHUD debug visualizations" ON)
 
@@ -17,9 +17,9 @@ project(
 	LANGUAGES CXX
 )
 
-set(COMMONLIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/extern/CommonLibSSE-NG")
+set(COMMONLIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/extern/CommonLibVR")
 if(NOT EXISTS "${COMMONLIB_PATH}/include/RE/Skyrim.h")
-	message(FATAL_ERROR "CommonLibSSE-NG is missing. Run: git submodule update --init --recursive")
+	message(FATAL_ERROR "CommonLibVR (ng branch) is missing. Run: git submodule update --init --recursive")
 endif()
 
 find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h" REQUIRED)
