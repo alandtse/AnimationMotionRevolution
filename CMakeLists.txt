@@ -9,11 +9,13 @@ set(ENABLE_SKYRIM_SE ON CACHE BOOL "Build for Skyrim SE" FORCE)
 set(ENABLE_SKYRIM_AE ON CACHE BOOL "Build for Skyrim AE" FORCE)
 set(ENABLE_SKYRIM_VR ON CACHE BOOL "Build for Skyrim VR" FORCE)
 set(BUILD_TESTS OFF CACHE BOOL "Build CommonLibSSE tests" FORCE)
-option(AMR_ENABLE_TRUEHUD_DEBUG "Build TrueHUD debug visualizations" ON)
+option(AMR_ENABLE_TRUEHUD_DEBUG "Build TrueHUD debug visualizations" OFF)
+
+set(VERSION 2.0.0)
 
 project(
 	AnimationMotionRevolution
-	VERSION 2.0.0
+	VERSION ${VERSION}
 	LANGUAGES CXX
 )
 
@@ -60,7 +62,7 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${headers} ${sources})
 add_commonlibsse_plugin(
 	${PROJECT_NAME}
 	NAME "AnimationMotionRevolution"
-	AUTHOR "alexsylex"
+	AUTHOR "alexsylex, max-su-2019, alandtse"
 	USE_ADDRESS_LIBRARY
 	SOURCES ${headers} ${sources}
 )
