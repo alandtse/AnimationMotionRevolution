@@ -245,7 +245,7 @@ namespace hooks
 						}
 					}
 				}
-				logger::info(
+				logger::debug(
 					"[AMR-DIAG][activate] clip='{}' animation='{}' character={} duration={} tracks={} translationKeys={} rotationKeys={} warpMarkers={} combatBoundaries={} warpSegments={} explicitWarpTimeline={} translationEnd=({}, {}, {})",
 					a_clip->name.c_str(),
 					a_clip->animationName.c_str(),
@@ -280,7 +280,7 @@ namespace hooks
 								.maximumDistance = std::numeric_limits<float>::infinity()
 							} :
 							segment.limits;
-					logger::info(
+					logger::debug(
 						"[AMR-DIAG][segment] clip='{}' index={} kind={} time=({}, {}) motion=({}, {}, {}) limits=({}, {}) angle={} distance={}",
 						a_clip->name.c_str(),
 						index,
@@ -592,7 +592,7 @@ namespace hooks
 				requestedScale,
 				limits.lowerLimit,
 				limits.upperLimit);
-			logger::info(
+			logger::debug(
 				"[AMR-DIAG][warp-scale] actor=0x{:08X} target=0x{:08X} explicit={} segmentIndex={} segment=({}, {}) limits=({}, {}) maximumAngle={} maximumDistance={} targetDistance={} authoredWindowDistance={} desiredDistance={} requestedScale={} scale={}",
 				a_character->GetFormID(),
 				target->GetFormID(),
@@ -872,7 +872,7 @@ namespace hooks
 			if (resetRuntime) {
 				ResetTranslationRuntime(state, a_character);
 				const auto& authoredEnd = a_motionData.translationList.back().delta;
-				logger::info(
+				logger::debug(
 					"[AMR-DIAG][motion-start] actor=0x{:08X} clip='{}' time={} keys={} authoredEnd=({}, {}, {}) position=({}, {}, {}) verticalMotion={} attackEdgeProtection={} defaultAttackWarping={} attacking={}",
 					a_character->GetFormID(),
 					a_clipName,
@@ -941,7 +941,7 @@ namespace hooks
 #endif
 			if (state.previousMotionTime >= 0.0F &&
 				(warpApplied != state.wasWarping || warpSegmentChanged)) {
-				logger::info(
+				logger::debug(
 					"[AMR-DIAG][warp] clip='{}' state={} attacking={} time={}",
 					a_clipName,
 					warpApplied ? "applied" : "inactive",
@@ -995,7 +995,7 @@ namespace hooks
 				const bool groundBlocked = !probe.hasGround;
 				if (!state.groundProbeInitialized ||
 					groundBlocked != state.wasGroundBlocked) {
-					logger::info(
+					logger::debug(
 						"[AMR-DIAG][ground] clip='{}' state={} center=({}, {}, {}) boundary=({}, {}, {}) rootShapeType={} convexHalfExtents=({}, {}) convexMargin={} inverseScale={} controllerRadiusWorld={} rayZ=({}, {}) hitFraction={} scale={} filter=0x{:08X} world={}",
 						a_clipName,
 						groundBlocked ? "blocked" : "clear",
@@ -1176,7 +1176,7 @@ namespace hooks
 			const auto translation2 = base + (REL::Module::IsAE() ? 0x2AA : 0x2A1);
 			const auto rotation1 = base + (REL::Module::IsAE() ? 0x35C : 0x355);
 			const auto rotation2 = base + (REL::Module::IsAE() ? 0x36D : 0x368);
-			logger::info(
+			logger::debug(
 				"[AMR-DIAG][hooks] processMotionData=0x{:X} translation=(0x{:X}, 0x{:X}) rotation=(0x{:X}, 0x{:X}) runtime={}",
 				base,
 				translation1,

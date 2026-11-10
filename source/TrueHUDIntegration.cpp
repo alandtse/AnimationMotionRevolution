@@ -45,7 +45,7 @@ namespace truehud
 			TRUEHUD_API::RequestPluginAPI(TRUEHUD_API::InterfaceVersion::V3));
 		api.store(acquired, std::memory_order_release);
 		if (acquired) {
-			logger::info("[AMR-DIAG][TrueHUD] API V3 acquired; Page Up toggles motion-warp debug, Page Down toggles ledge debug");
+			logger::debug("[AMR-DIAG][TrueHUD] API V3 acquired; Page Up toggles motion-warp debug, Page Down toggles ledge debug");
 		} else {
 			logger::warn("[AMR-DIAG][TrueHUD] API V3 unavailable; debug visualization disabled");
 		}

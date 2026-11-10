@@ -40,13 +40,13 @@ namespace
 				const auto key = button->GetIDCode();
 				if (key == static_cast<std::uint32_t>(RE::BSKeyboardDevice::Keys::kPageUp)) {
 					const bool visible = truehud::ToggleMotionWarpVisibility();
-					logger::info(
+					logger::debug(
 						"[AMR-DIAG][TrueHUD] Page Up: motion-warp visualization {}",
 						visible ? "shown" : "hidden");
 				} else if (key == static_cast<std::uint32_t>(
 									  RE::BSKeyboardDevice::Keys::kPageDown)) {
 					const bool visible = truehud::ToggleLedgeProtectionVisibility();
-					logger::info(
+					logger::debug(
 						"[AMR-DIAG][TrueHUD] Page Down: ledge-protection visualization {}",
 						visible ? "shown" : "hidden");
 				}
@@ -65,7 +65,7 @@ namespace
 		if (a_message && a_message->type == SKSE::MessagingInterface::kDataLoaded) {
 			if (auto* input = RE::BSInputDeviceManager::GetSingleton()) {
 				input->AddEventSink(DebugVisualizationInputSink::GetSingleton());
-				logger::info("[AMR-DIAG][TrueHUD] Page Up/Page Down visualization input registered");
+				logger::debug("[AMR-DIAG][TrueHUD] Page Up/Page Down visualization input registered");
 			}
 		}
 #else
@@ -92,8 +92,8 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 	}
 	settings::Init("AnimationMotionRevolution.ini");
 	logger::set_level(settings::debug::logLevel, settings::debug::logLevel);
-	logger::info(
-		"[AMR-DIAG] diagnostic build 2026-09-04-warp-graph-variable; runtime {}",
+	logger::debug(
+		"Runtime {}",
 		REL::Module::get().version().string());
 
 	hooks::Install();
